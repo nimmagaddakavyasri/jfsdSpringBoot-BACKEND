@@ -23,13 +23,13 @@ public class EmailController {
 	}
 
 
-	/*
+	
 	@RequestMapping("/send-email")
 	public String sendEmail() {
 		try {
 		SimpleMailMessage msg= new SimpleMailMessage();
 		
-		msg.setFrom("nimmagaddakavya5@gmail.com");
+		msg.setFrom("2200031095cseh@gmail.com");
 		msg.setTo("kavyanimmagadda12@gmail.com");
 		msg.setSubject("Simple test email from Admin!..");
 		msg.setText("This is a sample email body for my 1st email");
@@ -43,9 +43,9 @@ public class EmailController {
 		 
 	}
 	
-	*/
 	
 	
+	/*
 	@RequestMapping("/send-email-with-attachment")
 	public String sendEmail() {
 		try {
@@ -70,6 +70,8 @@ public class EmailController {
 		}
 		 
 	}
+	*/
+	
 	
 
 }

@@ -24,6 +24,7 @@ public class User {
     private String password;
     private String role;
     private String profilePhoto;
+    private String cvFilePath;
 
     
     @Column(columnDefinition = "int default 0")
@@ -99,5 +100,12 @@ public class User {
 
     public void setProfilePhoto(String profilePhoto) {
         this.profilePhoto = profilePhoto;
+    }
+    public String getCvFilePath() {
+        return cvFilePath;
+    }
+
+    public void setCvFilePath(String cvFilePath) {
+        this.cvFilePath = cvFilePath;
     }
 }

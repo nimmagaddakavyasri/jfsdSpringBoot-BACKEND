@@ -135,4 +135,8 @@ public class UserService {
         return userRepository.findByEmail(email)
                 .orElseThrow(() -> new RuntimeException("User not found with email: " + email));
     }
+    
+    public Optional<User> getUserByEmailOptional(String email) {
+        return userRepository.findByEmail(email);
+    }
 }

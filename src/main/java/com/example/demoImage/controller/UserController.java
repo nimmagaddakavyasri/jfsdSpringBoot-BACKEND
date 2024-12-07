@@ -45,6 +45,8 @@ public class UserController {
     private JavaMailSender mailSender;
 	
 	public static String uploadDirectory = System.getProperty("user.dir")+"/src/main/webapp/images" ;
+	
+	public static String uploadDirectorycv = System.getProperty("user.dir") + "/src/main/webapp/cv";
 
     @PostMapping("/signup")
     public RedirectView signUpUser(@RequestBody User user) {
@@ -132,5 +134,34 @@ public class UserController {
         return response;
     }
     
+    
+    @PostMapping("/upload-cv")
+    public ResponseEntity<String> uploadCV(@RequestParam("email") String email, @RequestParam("cv") MultipartFile file) {
+        try {
+            if (file.isEmpty()) {
+                return ResponseEntity.badRequest().body("No file uploaded.");
+            }
+
+            // Save the file to the specified directory
+            String originalFilename = file.getOriginalFilename();
+            Path fileNameAndPath = Paths.get(uploadDirectory, originalFilename);
+            Files.write(fileNameAndPath, file.getBytes());
+
+            // Update the user with the CV file path
+            Optional<User> userOptional = userService.getUserByEmailOptional(email);
+
+            if (userOptional.isEmpty()) {
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).body("User not found.");
+            }
+
+            User user = userOptional.get();
+            user.setCvFilePath(originalFilename); // Save only the file name or the relative path
+            userService.saveUser(user);
+
+            return ResponseEntity.ok("CV uploaded successfully.");
+        } catch (IOException e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Failed to upload CV: " + e.getMessage());
+        }
+    }
 
 }

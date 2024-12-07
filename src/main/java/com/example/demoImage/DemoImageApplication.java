@@ -20,7 +20,6 @@ public class DemoImageApplication {
 	
 	
 	
-	
 	public static void main(String[] args) {
 		SpringApplication.run(DemoImageApplication.class, args);
 	}

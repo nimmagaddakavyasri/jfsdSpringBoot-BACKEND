@@ -63,6 +63,10 @@ public class TeacherService {
 	        return "Teacher login successful";
 	 }
 	 
-	
+	 public Teacher getTeacherByEmail(String email) 
+	 {
+	        return teacherRepository.findByEmail(email);  // Find teacher by email
+	 }
+
 
 }

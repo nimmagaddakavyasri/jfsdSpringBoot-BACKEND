@@ -12,6 +12,6 @@ public interface TeacherRepository extends JpaRepository<Teacher, Long>{
 	List<Teacher> findByAcceptFalse();
 	List<Teacher> findByAccept(boolean accept);
 	Teacher findByEmailAndPasswordAndRole(String email, String password, String role);
-	
+	Teacher findByEmail(String email);
 	
 }

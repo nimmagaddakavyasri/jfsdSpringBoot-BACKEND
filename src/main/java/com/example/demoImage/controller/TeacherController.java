@@ -99,6 +99,14 @@ public class TeacherController {
 	        // Delegate the logic to the service layer
 	        return teacherService.getRejectedTeachers();
 	    }
-
+	 
+	 @GetMapping("/profile/{email}")
+	    public Teacher getTeacherProfile(@PathVariable String email) {
+	        Teacher teacher = teacherService.getTeacherByEmail(email);
+	        if (teacher == null) {
+	            throw new RuntimeException("Teacher not found for email: " + email);
+	        }
+	        return teacher;
+	    }
 
 }
